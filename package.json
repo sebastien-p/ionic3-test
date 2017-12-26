@@ -1,9 +1,10 @@
 {
+  "private": true,
   "name": "ionic3",
   "version": "0.0.1",
   "author": "Ionic Framework",
+  "description": "An Ionic project",
   "homepage": "http://ionicframework.com/",
-  "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -33,6 +34,5 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.1.6",
     "typescript": "2.4.2"
-  },
-  "description": "An Ionic project"
+  }
 }

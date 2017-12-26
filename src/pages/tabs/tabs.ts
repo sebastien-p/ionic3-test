@@ -8,12 +8,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-
-  constructor() {
-
-  }
+  tab1Root: typeof HomePage = HomePage;
+  tab2Root: typeof AboutPage = AboutPage;
+  tab3Root: typeof ContactPage = ContactPage;
 }
