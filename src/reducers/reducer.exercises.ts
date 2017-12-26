@@ -14,15 +14,15 @@ export function exercises(
 ): IState {
   switch (type) {
     case Actions.Create:
-      return adapter.addOne({ id: state.ids.length, name: payload as string }, state); // FIXME
+      return adapter.addOne({ id: state.ids.length, name: <string>payload }, state); // FIXME
     case Actions.ReadAll:
       return state;
     case Actions.ReadOne:
       return state;
     case Actions.Update:
-      return adapter.updateOne({ id: (payload as IExercise).id, changes: payload as IExercise }, state); // FIXE
+      return adapter.updateOne({ id: (<IExercise>payload).id, changes: <IExercise>payload }, state); // FIXME
     case Actions.Delete:
-      return adapter.removeOne(payload as number, state); // FIXME
+      return adapter.removeOne(<number>payload, state); // FIXME
     default:
       return state;
     }

@@ -28,7 +28,7 @@ import { exercises } from '../reducers/reducer.exercises';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     StoreModule.forRoot({ exercises }),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument() // TODO: not in prod
   ],
   bootstrap: [IonicApp],
   entryComponents: [

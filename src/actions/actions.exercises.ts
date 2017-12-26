@@ -3,11 +3,11 @@ import { Action } from '@ngrx/store';
 import { IExercise } from '../api/service.exercises';
 
 export const enum Actions {
-  Create = '[EXERCISE] Create',
-  ReadAll = '[EXERCISE] Read all',
-  ReadOne = '[EXERCISE] Read one',
-  Update = '[EXERCISE] Update',
-  Delete = '[EXERCISE] Delete'
+  Create = '[Exercises] Create',
+  ReadAll = '[Exercises] Read all',
+  ReadOne = '[Exercises] Read one',
+  Update = '[Exercises] Update',
+  Delete = '[Exercises] Delete'
 }
 
 export class CreateExercise implements Action {
@@ -35,8 +35,8 @@ export class DeleteExercise implements Action {
   constructor(readonly payload: number) {}
 }
 
-export type ExercisesActions =
-  CreateExercise
+export type ExercisesActions
+  = CreateExercise
   | ReadAllExercises
   | ReadOneExercise
   | UpdateExercise
