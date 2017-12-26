@@ -10,7 +10,8 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "mocks": "json-server ./mocks/db.js --config ./mocks/config.json"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
@@ -33,6 +34,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.6",
+    "json-server": "0.12.1",
+    "require-glob": "3.2.0",
     "typescript": "2.4.2"
   }
 }
