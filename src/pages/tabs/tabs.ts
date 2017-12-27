@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
@@ -8,7 +8,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  tab1Root: typeof HomePage = HomePage;
-  tab2Root: typeof AboutPage = AboutPage;
-  tab3Root: typeof ContactPage = ContactPage;
+  tab1Root: Type<HomePage> = HomePage;
+  tab2Root: Type<AboutPage> = AboutPage;
+  tab3Root: Type<ContactPage> = ContactPage;
 }

@@ -1,8 +1,8 @@
 import { createFeatureSelector } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { IExercise } from '../api/service.exercises';
-import { Actions, ExercisesActions } from '../actions/actions.exercises';
+import { IExercise } from '../../api/models/exercices.model';
+import * as actions from '../actions/exercises.actions';
 
 export interface IState extends EntityState<IExercise> {}
 
@@ -10,22 +10,19 @@ const adapter: EntityAdapter<IExercise> = createEntityAdapter<IExercise>();
 
 export function exercises(
   state: IState = adapter.getInitialState(),
-  { type, payload }: ExercisesActions
+  { type, payload }: actions.All
 ): IState {
   switch (type) {
-    case Actions.Create:
-      return adapter.addOne({ id: state.ids.length, name: <string>payload }, state); // FIXME
-    case Actions.ReadAll:
-      return state;
-    case Actions.ReadOne:
-      return state;
-    case Actions.Update:
+    case actions.createSuccess:
+      return adapter.addOne(<IExercise>payload, state); // FIXME
+    case actions.readSuccess:
+      return adapter.addAll(<IExercise[]>payload, state); // FIXME
+    case actions.updateSuccess:
       return adapter.updateOne({ id: (<IExercise>payload).id, changes: <IExercise>payload }, state); // FIXME
-    case Actions.Delete:
+    case actions.destroySuccess:
       return adapter.removeOne(<number>payload, state); // FIXME
-    default:
-      return state;
-    }
+  }
+  return state;
 }
 
 export const { selectAll } = adapter.getSelectors(createFeatureSelector('exercises')); // FIXME

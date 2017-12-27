@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Platform } from 'ionic-angular';
@@ -9,7 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: typeof TabsPage = TabsPage;
+  rootPage: Type<TabsPage> = TabsPage;
 
   constructor(
     platform: Platform,

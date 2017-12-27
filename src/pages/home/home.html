@@ -12,7 +12,7 @@
     Create
   </button>
   <ion-list>
-    <ion-item *ngFor="let exercise of (exercises | async); trackBy: trackByKey('id')">
+    <ion-item *ngFor="let exercise of (exercises$ | async); trackBy: trackByKey('id')">
       <p>{{ exercise.id }} - {{ exercise.name }}</p>
       <button
         type="button"
@@ -23,8 +23,8 @@
       <button
         type="button"
         ion-button
-        (click)="deleteExercise(exercise)">
-        Delete
+        (click)="destroyExercise(exercise)">
+        Destroy
       </button>
     </ion-item>
   </ion-list>

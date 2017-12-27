@@ -1,54 +1,35 @@
 import { Component, TrackByFunction } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { IExercise } from '../../api/service.exercises';
-
-import {
-  // ReadAllExercises,
-  CreateExercise,
-  UpdateExercise,
-  DeleteExercise
-} from '../../actions/actions.exercises';
-
-import { IState, selectAll } from '../../reducers/reducer.exercises';
-
-interface IAppStore {
-  exercises: IState;
-}
+import { IExercise } from '../../api/models/exercices.model';
+import { ExercisesService } from '../../store/services/exercises.service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  exercises: Observable<IExercise[]> = this.store.select(selectAll);
+  readonly exercises$: Observable<IExercise[]> = this.exercices.all$;
 
-  constructor(private readonly store: Store<IAppStore>) {}
+  constructor(private readonly exercices: ExercisesService) {}
 
-  // private ionViewDidEnter(): void {
-  //   this.refreshExercisesList();
-  // }
-
-  // private refreshExercisesList(): void {
-  //   this.store.dispatch(new ReadAllExercises());
-  // }
-
-  trackByKey(key: keyof IExercise): TrackByFunction<IExercise> {
-    return (index, exercise) => exercise[key];
+  private ionViewDidEnter(): void {
+    this.exercices.read();
   }
 
   createExercise(): void {
-    const name: string = Date.now().toString();
-    this.store.dispatch(new CreateExercise(name));
+    this.exercices.create({ name: Date.now().toString() });
   }
 
   updateExercise(exercise: IExercise): void {
-    const name: string = Date.now().toString();
-    this.store.dispatch(new UpdateExercise({ ...exercise, name }));
+    this.exercices.update({ ...exercise, name: Date.now().toString() });
   }
 
-  deleteExercise(exercise: IExercise): void {
-    this.store.dispatch(new DeleteExercise(exercise.id));
+  destroyExercise(exercise: IExercise): void {
+    this.exercices.destroy(exercise.id);
+  }
+
+  trackByKey(key: keyof IExercise): TrackByFunction<IExercise> {
+    return (index, exercise) => exercise[key]; // DRY
   }
 }

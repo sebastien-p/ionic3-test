@@ -1,21 +1,24 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
+import { AppAPIModule } from '../api/api.module';
+import { AppStoreModule } from '../store/store.module';
 import { MyApp } from './app.component';
-import { ExercisesService } from '../api/service.exercises';
+import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { exercises } from '../reducers/reducer.exercises';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AppAPIModule,
+    AppStoreModule
+  ],
   declarations: [
     MyApp,
     AboutPage,
@@ -23,26 +26,20 @@ import { exercises } from '../reducers/reducer.exercises';
     HomePage,
     TabsPage
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    StoreModule.forRoot({ exercises }),
-    StoreDevtoolsModule.instrument() // TODO: not in prod
-  ],
-  bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    TabsPage,
     HomePage,
-    TabsPage
+    AboutPage,
+    ContactPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ExercisesService
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
+  ],
+  bootstrap: [
+    IonicApp
   ]
 })
 export class AppModule {}
