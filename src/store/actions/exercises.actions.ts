@@ -1,57 +1,67 @@
-import { Action } from '@ngrx/store';
+import { ITempExercise, IExercise } from '../../api/models/exercices.model';
+import { type, success, Action } from '../app.store';
 
-import { IExercise, ITempExercise } from '../../api/models/exercices.model';
+export const namespace: string = 'exercises';
 
-export const create: string = '[Exercises] Create';
-export const createSuccess: string = '[Exercises] Create success';
-export const read: string = '[Exercises] Read';
-export const readSuccess: string = '[Exercises] Read success';
-export const update: string = '[Exercises] Update';
-export const updateSuccess: string = '[Exercises] Update success';
-export const destroy: string = '[Exercises] Destroy';
-export const destroySuccess: string = '[Exercises] Destroy success';
+/* Create */
 
-export class Create implements Action {
+export const create: string = type('Create', namespace);
+
+export class Create extends Action<ITempExercise> {
   readonly type: string = create;
-  constructor(readonly payload: ITempExercise) {}
 }
 
-export class CreateSuccess implements Action {
+export const createSuccess: string = success(create);
+
+export class CreateSuccess extends Action<IExercise> {
   readonly type: string = createSuccess;
-  constructor(readonly payload: IExercise) {}
 }
 
-export class Read implements Action {
+/* Read */
+
+export const read: string = type('Read', namespace);
+
+export class Read extends Action<void> {
   readonly type: string = read;
-  constructor(readonly payload?: void) {} // FIXME
 }
 
-export class ReadSuccess implements Action {
+export const readSuccess: string = success(read);
+
+export class ReadSuccess extends Action<IExercise[]> {
   readonly type: string = readSuccess;
-  constructor(readonly payload: IExercise[]) {}
 }
 
-export class Update implements Action {
+/* Update */
+
+export const update: string = type('Update', namespace);
+
+export class Update extends Action<IExercise> {
   readonly type: string = update;
-  constructor(readonly payload: IExercise) {}
 }
 
-export class UpdateSuccess implements Action {
+export const updateSuccess: string = success(update);
+
+export class UpdateSuccess extends Action<IExercise> {
   readonly type: string = updateSuccess;
-  constructor(readonly payload: IExercise) {}
 }
 
-export class Destroy implements Action {
+/* Destroy */
+
+export const destroy: string = type('Destroy', namespace);
+
+export class Destroy extends Action<number> {
   readonly type: string = destroy;
-  constructor(readonly payload: number) {}
 }
 
-export class DestroySuccess implements Action {
+export const destroySuccess: string = success(destroy);
+
+export class DestroySuccess extends Action<number> {
   readonly type: string = destroySuccess;
-  constructor(readonly payload: number) {}
 }
 
-export type All
+/* All */
+
+export type All // TODO: typeof keyof
   = Create
   | CreateSuccess
   | Read

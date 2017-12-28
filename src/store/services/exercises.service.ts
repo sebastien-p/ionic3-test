@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 
-import { AppStore } from '../app.store';
+import { Store } from '../app.store';
 import { ITempExercise, IExercise } from '../../api/models/exercices.model';
 import { selectAll } from '../reducers/exercises.reducer';
 import * as actions from '../actions/exercises.actions';
 
-export class ExercisesService extends AppStore {
+export class ExercisesService extends Store {
   readonly all$: Observable<IExercise[]> = this.store.select(selectAll);
 
   create(exercise: ITempExercise): void {
