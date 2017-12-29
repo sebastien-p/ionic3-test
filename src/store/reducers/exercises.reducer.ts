@@ -13,16 +13,21 @@ export function exercises(
   { type, payload }: actions.All
 ): IState {
   switch (type) {
-    case actions.createSuccess:
-      return adapter.addOne(<IExercise>payload, state); // FIXME
-    case actions.readSuccess:
-      return adapter.addAll(<IExercise[]>payload, state); // FIXME
-    case actions.updateSuccess:
-      return adapter.updateOne({ id: (<IExercise>payload).id, changes: <IExercise>payload }, state); // FIXME
-    case actions.destroySuccess:
-      return adapter.removeOne(<number>payload, state); // FIXME
+    case actions.createSuccess: {
+      return adapter.addOne(payload as IExercise, state);
+    }
+    case actions.readSuccess: {
+      return adapter.addAll(payload as IExercise[], state);
+    }
+    case actions.updateSuccess: {
+      const { id, ...changes } = payload as IExercise;
+      return adapter.updateOne({ id, changes }, state);
+    }
+    case actions.destroySuccess: {
+      return adapter.removeOne(payload as number, state);
+    }
   }
   return state;
 }
 
-export const { selectAll } = adapter.getSelectors(createFeatureSelector('exercises')); // FIXME
+export const { selectAll } = adapter.getSelectors(createFeatureSelector(actions.namespace)); // FIXME
